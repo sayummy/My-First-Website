@@ -1,0 +1,724 @@
+@charset "utf-8";
+/* common - small screen 
+@media (min-width: 0px) and (max-width: 599px) */
+
+/* テーマカラーの定義 */
+:root {
+  --mainColor: rgb(41, 52, 153);
+  --mainColorShadow: rgba(7, 8, 85, 0.4);
+  --subColor: rgb(59, 196, 246);
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  color: #333;
+  font-family: Verdaba, sans-serif;
+  margin: 0;
+  background-image: url(../img/Wa_BackgroundBlue1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+/* スマートフォン用の３本線のメニュー */
+.menuContainer {
+  width: 100%;
+  display: flex;
+}
+header .sp-menu {
+  margin-left: auto;
+  padding: 0 16px;
+  color: var(--mainColor);
+
+}
+.sp-menu #open {
+  font-size: 32px;
+  line-height: 64px;
+  cursor: pointer;
+}
+/* JavaScriptでhideクラスをつけた。menuページでばつ印の裏に３本メニューがうっすら見えるので、見えないようにする。 */
+.sp-menu #open.hide {
+  display: none;
+}
+/* 半透明のメニューページのスタイル */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 5;
+  text-align: center;
+  padding: 64px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s;
+  z-index: 7;
+}
+/* 半透明のメニューページのばつ印のスタイル */
+.overlay #close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 32px;
+  cursor: pointer;
+}
+/* 半透明のメニューページのリストのスタイル */
+.overlay ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* 半透明ページでメニューが順々にでてくるようにアニメーションを入れる。 */
+.overlay li {
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.overlay.show li {
+  opacity: 1;
+  transform: none;
+}
+.overlay.show li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.overlay.show li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.overlay.show li:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.overlay.show li:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.overlay.show li:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+/* JavaScriptでshowクラスをつけた。３本線メニューをクリックすると半透明のメニューを表示する */
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+header {
+  width: 100%;
+}
+/* ナビゲーション */
+.headContainer nav {
+  display: flex;
+}
+.headContainer nav ul {
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  padding-top: 32px;
+  margin-left: auto;
+}
+.headContainer nav a {
+  background: var(--subColor);
+  color: var(--mainColor);
+  font-size: 14px;
+  font-weight: 600;
+  width: 150px;
+  text-align: center;
+  line-height: 32px;
+  display: block;
+  margin-right: 3px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  text-decoration: none;
+}
+.headContainer nav a:hover {
+  background: rgb(238, 238, 238);
+}
+
+/* activeクラスが付いているメニューにスタイルをつける */
+.menu li a.active {
+  background: var(--mainColor);
+  color: #fff;
+}
+
+/* menuでactiveでないものにホバーした時のスタイル */
+.menu li a:not(.active):hover {
+  opacity: 0.9;
+  transition: opacity 0.4s;
+}
+
+/* タブをJavaScriptで表示を帰る時 */
+/* .content.active {
+  display: block;
+}
+.content {
+  display: none;
+} */
+
+/* 紺色のトップバナー内 */
+.blueBoxTop {
+  background-color: var(--mainColor);
+  height: 170px;
+  box-shadow: 3px 3px 2px var(--mainColorShadow);
+}
+.content {
+  width: 100%;
+  color: #ffffff;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+.content h1 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 24px;
+  padding-top: 32px;
+  line-height: 1.8;
+  text-shadow: 2px 2px 1px var(--mainColorShadow);
+}
+.content p:first-of-type {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.8;
+  margin-bottom: 8px;
+} 
+.content p+p {
+  margin: 0;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1.8;
+} 
+
+/* 和のマークー左上 */
+.wa_MarkTop img {
+  display: inline-block;
+  width: 60px;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  z-index: 3;
+}
+/* サイドの花ー左 */
+.flowerWavesLeft img {
+  display: inline-block;
+  width: 140px;
+  position: absolute;
+  top: -70px;
+  left: -50px;
+  z-index: 2;
+
+  animation: moveLeftWave 1s forwards;
+}
+@keyframes moveLeftWave {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* サイドの花ー右 */
+.flowerWavesRight img {
+  display: inline-block;
+  width: 100px;
+  position: absolute;
+  top: 200px;
+  right: 0px;
+  z-index: 1;
+
+  animation: moveRightWave 1s forwards;
+  animation-direction: alternate-reverse;
+}
+@keyframes moveRightWave {
+  0% {
+    transform: none;
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+}
+
+/* メイン ３つの選択枠
+スマートフォンでは縦に３つが並ぶ*/
+main {
+  flex: 1;
+  margin-top: 32px;
+  margin: 0 12px;
+}
+.mainContainer {
+ margin-top: 18px;
+ position: relative;
+ z-index: 6;
+}
+.box {
+  width: 100%;
+  /* height: 220px; */
+  margin: 0 auto;
+  margin-bottom: 18px;
+  background-color: #fff;
+  border-color: var(--mainColor);
+  border-style: solid;
+  border-radius: 6px;
+  box-shadow: 3px 3px 2px var(--mainColorShadow);
+  text-align: left;
+}
+
+.box p {
+  margin: 0;
+}
+.box img{
+  width: 200px;
+  display: block;
+}
+.box dt {
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 12px;
+  padding-left: 12px;
+  line-height: 1.8;
+  text-align: center;
+}
+.box dd {
+  margin: 0;
+  font-size: 14px;
+  padding: 12px;
+  text-align: center;
+
+}
+
+/* ボックス内のイメージ写真 */
+.boxImg img {
+  width: 180px;
+  /* height: 130px; */
+  border: solid 1px gray;
+  margin-top: 8px;
+  margin-right: 8px;
+  display: none;
+}
+.bCardBox {
+  display: flex;
+}
+.printingBox {
+  display: flex;
+}
+.orderStepsBox {
+  display: flex;
+}
+
+/* 詳細はこちらの小さなボタン */
+.btnSmall {
+  text-decoration: none;
+  background: var(--mainColor);
+  color: white;
+  display: block;
+  width: 170px;
+  height: 25px;
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px var(--mainColorShadow);
+  text-align: center;
+  /* margin: 4px 0 12px 12px; */
+  margin: 12px auto;
+}
+.btnBusinessCard {
+  background-image:-moz-linear-gradient(
+    top,
+    rgb(240, 128, 42) 0%,
+    rgb(245, 89, 54) 40%,
+    rgb(240, 78, 42) 52%,
+    rgb(211, 53, 17));
+ 
+    background-image:-webkit-gradient(
+    linear,left top,left bottom,
+    from(rgb(240, 128, 42)),
+    color-stop(0.49,rgb(240, 83, 48)),
+    color-stop(0.52,rgb(240, 78, 42)),
+    to(rgb(211, 53, 17)));
+}
+.btnDesign {
+  background-image:-moz-linear-gradient(
+    top,
+    rgb(199, 104, 247) 0%,
+    rgb(160, 95, 245) 40%,
+    rgb(160, 95, 245) 52%,
+    rgb(160, 95, 245));
+ 
+    background-image:-webkit-gradient(
+    linear,left top,left bottom,
+    from(rgb(199, 104, 247)),
+    color-stop(0.49,rgb(160, 95, 245)),
+    color-stop(0.52,rgb(160, 95, 245)),
+    to(rgb(160, 95, 245)));
+}
+.btnOrderSteps {
+  background-image:-moz-linear-gradient(
+    top,
+    rgb(226, 182, 36) 0%,
+    rgb(146, 113, 6) 40%,
+    rgb(139, 107, 2) 52%,
+    rgb(139, 96, 2));
+ 
+    background-image:-webkit-gradient(
+    linear,left top,left bottom,
+    from(rgb(226, 182, 36)),
+    color-stop(0.49,rgb(146, 113, 6)),
+    color-stop(0.52,rgb(139, 107, 2)),
+    to(rgb(139, 96, 2)));
+}
+.btnSmall:hover {
+  opacity: 0.9;
+}
+
+/* お問い合わせの大きいボタン */
+.btnLarge {
+  text-decoration: none;
+  /* グラデーションのボタン */
+  background-image:-moz-linear-gradient(
+    top,
+    rgb(199, 104, 247) 0%,
+    rgb(160, 95, 245) 40%,
+    rgb(79, 10, 170) 52%,
+    rgb(160, 95, 245));
+ 
+    background-image:-webkit-gradient(
+    linear,left top,left bottom,
+    from(rgb(58, 10, 170)),
+    color-stop(0.49,rgb(93, 19, 190)),
+    color-stop(0.52,rgb(93, 19, 190)),
+    to(rgb(47, 11, 131)));
+  
+  color: white;
+  display: block;
+  width: 200px;
+  margin: 0;
+  line-height: 1.8;
+  margin: 24px auto 24px;
+  padding: 24px 24px;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px var(--mainColorShadow);
+}
+.btnLarge:hover {
+  opacity: 0.9;
+}
+
+/* フッター */
+footer {
+  background: var(--mainColor);
+  height: 190px;
+}
+footer img {
+  margin-top: 20px;
+}
+footer p {
+  margin: 0 auto;
+  font-size: 11px;
+  color: white;
+  text-align: center;
+}
+.address {
+  margin: 12px 0;
+}
+
+
+
+/* メディアクエリの設定 */
+
+/* small-midium screen */
+@media (min-width: 350px) {
+  /* 紺色のトップバナー内 */
+  .blueBoxTop {
+    height: 220px;
+  }
+  .content h1 {
+    font-size: 36px;
+  }
+  .content p:first-of-type {
+    font-size: 15px;
+  } 
+  .content p+p {
+    font-size: 13px;
+  } 
+  /* 和のマークー左上 */
+  .wa_MarkTop img {
+    width: 80px;
+  }
+  /* サイドの花ー左 */
+  .flowerWavesLeft img {
+    width: 150px;
+    top: -70px;
+  }
+
+  /* サイドの花ー右 */
+  .flowerWavesRight img {
+    width: 100px;
+    top: 240px;
+  }
+
+  /* メイン ３つの選択枠
+  スマートフォンでは縦に３つが並ぶ*/
+  main {
+    flex: 1;
+    margin-top: 32px;
+    margin: 0 12px;
+  }
+  .mainContainer {
+  margin-top: 18px;
+  position: relative;
+  z-index: 6;
+  }
+  .box {
+    width: 100%;
+    /* height: 220px; */
+    margin: 0 auto;
+    margin-bottom: 18px;
+    background-color: #fff;
+    border-color: var(--mainColor);
+    border-style: solid;
+    border-radius: 6px;
+    box-shadow: 3px 3px 2px var(--mainColorShadow);
+    text-align: left;
+  }
+
+  .box p {
+    margin: 0;
+  }
+  .box img{
+    width: 200px;
+    display: block;
+  }
+  .box dt {
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 12px;
+    padding-left: 12px;
+    line-height: 1.8;
+    text-align: left;
+  }
+  .box dd {
+    margin: 0;
+    font-size: 14px;
+    padding: 12px;
+    text-align: left;
+  }
+
+  /* ボックス内のイメージ写真 */
+  .boxImg img {
+    width: 180px;
+    /* height: 130px; */
+    border: solid 1px gray;
+    margin-top: 8px;
+    margin-right: 8px;
+  }
+  .bCardBox {
+    display: flex;
+  }
+  .printingBox {
+    display: flex;
+  }
+  .orderStepsBox {
+    display: flex;
+  }
+}
+
+/* SPで見た時はPCメニューは見えないように設定 */
+.pc-menu {
+  display: none;
+}
+
+/* スマートフォンで見たときは"sp"のclassがついた画像が表示される */
+.pc { display: none !important; }
+.sp { display: block !important; }
+img.sp {
+  width: 100%;
+}
+
+/* midium screen */
+@media (min-width: 700px) {
+  /* パソコンで見たときは"pc"のclassがついた画像が表示される */
+  .pc { display: block !important; }
+  .sp { display: none !important; }
+
+  .pc-menu {
+    display: block;
+    margin: 0 auto;
+  }
+  .pc-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  .pc-menu a {
+    display: block;
+    width: 150px;
+    line-height: 64px;
+    text-align: center;
+  }
+  .pc-menu a:hover {
+    background: #f2f2f2;;
+  }
+  .sp-menu {
+    display: none;
+  }
+
+  /* 紺色のトップバナー内 */
+  .blueBoxTop {
+    height: 300px;
+  }
+  .content {
+    width: 500px;
+  }
+  .content h1 {
+    margin: 0;
+    font-size: 64px;
+    padding-top: 40px;
+    text-shadow: 5px 5px 3px var(--mainColorShadow);
+  }
+  .content p:first-of-type {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+  } 
+  .content p+p {
+    margin: 0;
+    font-size: 16px;
+  } 
+
+  /* 和のマークー左上 */
+  .wa_MarkTop img {
+  width: 100px;
+  top: 80px;
+  left: 30px;
+  }
+  /* サイドの花ー左 */
+  .flowerWavesLeft img {
+  width: 220px;
+  top: 90px;
+  left: -50px;
+  }
+
+  /* サイドの花ー右 */
+  .flowerWavesRight img {
+    width: 150px;
+    top: 200px;
+    right: 0px;
+  }
+
+
+  /* メイン ３つの選択枠 
+  Large Screenでは3列に横に並ぶ*/
+  .mainContainer {
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .box {
+    width: 200px;
+    height: 430px;
+    margin: 0 10px;
+    text-align: center;
+    flex-direction: column;
+  }
+  .box p {
+    margin: 0;
+    padding-left: 0;
+  }
+  .box img{
+    width: 200px;
+    display: block;
+  }
+  .box dt {
+    padding-top: 18px;
+    padding-left: 0px;
+    text-align: center;
+  }
+  .box dd {
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+
+  }
+  /* ボックス内のイメージ写真 */
+  .boxImg img{
+    width: 180px;
+    height: 130px;
+    margin: 0 auto;
+    display: inline;
+  }
+  .bCardBox {
+    display: block;
+  }
+  .printingBox {
+    display: block;
+  }
+  .orderStepsBox {
+    display: block;
+  }
+  /* 詳細はこちらの小さなボタン */
+  .btnSmall {
+    width: 170px;
+    height: 35px;
+    line-height: 36px;
+    margin: 24px auto 24px;
+    font-size: 14px;
+  }
+
+  /* お問い合わせの大きいボタン */
+  .btnLarge {
+    width: 550px;
+    line-height: 70px;
+    margin: 24px auto 24px;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+/* large screen */
+@media (min-width: 1100px) {
+  header .headerContainer {
+    width: 800px;
+    margin: 0 auto;
+  }
+    /* 和のマークー左上 */
+  .wa_MarkTop img {
+    display: inline-block;
+    width: 150px;
+    top: 40px;
+    left: 60px;
+  }
+  /* サイドの花ー左 */
+  .flowerWavesLeft img {
+    width: 320px;
+    top: 90px;
+    left: -50px;
+  }
+  /* サイドの花ー右 */
+  .flowerWavesRight img {
+    width: 220px;
+    top: 200px;
+    right: 0px;
+  }
+}
